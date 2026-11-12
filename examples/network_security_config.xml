@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Lets DEBUG builds of your own app trust certificates installed by the
+  user, so a debugging proxy (mitmproxy, Charles, Proxyman) can read its
+  HTTPS traffic. Release builds are not affected.
+
+  1. Save as app/src/main/res/xml/network_security_config.xml
+  2. Reference it in AndroidManifest.xml:
+       <application android:networkSecurityConfig="@xml/network_security_config" ...>
+
+  Apps targeting Android 7.0 (API 24) and later ignore user installed
+  certificates unless a rule like this is present.
+-->
+<network-security-config>
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>
